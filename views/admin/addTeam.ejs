@@ -1,0 +1,44 @@
+<%- include('../partials/navbar.ejs'); %>
+
+    <br/><br/>
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 title-section">
+            <h2 class="heading">Add a new team</h2>
+          </div>
+          <div class="col-lg-7">
+            <form action="/add-team" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="teamName" placeholder="Team name">
+                </div>
+                <% if(message1.length > 0){ %>
+                  <div class="alert alert-success"><%=message1%> &check;</div>
+                <%}%>
+                <% if(message2.length > 0){ %>
+                  <div class="alert alert-danger"><%=message2%></div>
+                <%}%>
+                <strong class="text-white d-block" >Select team league</strong>
+                <% league.forEach((league) => { %>
+                    <input type="radio" id="<%=league._id%>" name="league" value="<%=league.name%>" required>
+                    <label for="<%=league._id%>"> <%=league.name%> </label><br>
+                <% }); %>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary py-3 px-5" value="Submit">
+                </div>
+            </form>  
+          </div>
+          <div class="col-lg-4 ml-auto">
+            
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <strong class="text-white d-block">NOTE</strong>
+                Use a unique name for each team
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../partials/footer.ejs'); %>    
