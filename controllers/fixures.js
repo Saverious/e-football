@@ -1,6 +1,6 @@
 const Team = require('../models/team');
 const Fixure = require('../models/fixures');
-const { updateHomeTeam, updateAwayTeam } = require('../utils/updateTeamInfo');
+const { updateHomeTeam, updateAwayTeam } = require('../utils/teamInfo');
 
 // GET- create a fixure
 exports.createFixureGet = async (req, res) => {
