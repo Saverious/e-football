@@ -1,4 +1,5 @@
 const Team = require('../models/team');
+const TeamInfo = require('../models/teamInfo');
 const Fixure = require('../models/fixures');
 
 exports.blog = (req,res)=>{
@@ -23,10 +24,10 @@ exports.contact = (req,res)=>{
 
 exports.index = async (req,res)=>{
     try{
-        const team = await Team.find();
+        const teamInfo = await TeamInfo.find().populate('teamId');
         res.render('pages/index.ejs',{
             title:'Home',
-            team:team
+            teamInfo:teamInfo
         });
     }catch(err){
         console.error(err);
