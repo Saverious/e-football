@@ -1,5 +1,6 @@
 const League = require('../models/league');
 const Team = require('../models/team');
+const { makeTeamInfo } = require('../utils/teamInfo');
 
 // GET request : League Registration
 exports.registerGet = (req, res) => {
@@ -62,9 +63,12 @@ exports.addTeamPost = async (req, res) => {
                 name: req.body.teamName,
                 league: league._id
             });
-            await myTeam.save().then(() => {
-                req.flash('message1',`${req.body.teamName} added`);
-                res.redirect('/add-team');
+
+            await myTeam.save().then( async () => {
+                await makeTeamInfo(myTeam._id).then(() => {
+                    req.flash('message1',`${req.body.teamName} added`);
+                    res.redirect('/add-team');
+                });
             });
         }else{
             req.flash('message2',`${req.body.teamName} already exists`);
