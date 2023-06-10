@@ -1,6 +1,7 @@
 const Team = require('../models/team');
 const TeamInfo = require('../models/teamInfo');
 const Fixure = require('../models/fixures');
+const { compare } = require('../utils/functions');
 
 exports.blog = (req,res)=>{
     try{
@@ -25,6 +26,7 @@ exports.contact = (req,res)=>{
 exports.index = async (req,res)=>{
     try{
         const teamInfo = await TeamInfo.find().populate('teamId');
+        teamInfo.sort(compare);
         res.render('pages/index.ejs',{
             title:'Home',
             teamInfo:teamInfo
