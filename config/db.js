@@ -1,13 +1,14 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const { logging } = require('./logs');
 
 exports.dbConnect = async () => {
     try{
         await mongoose.connect(process.env.CONSTRING,{
             useNewUrlParser:true,
             useUnifiedTopology:true
-        }).then(() => console.log('connected to database'));
+        }).then(() => logging.info('connected to database'));
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }

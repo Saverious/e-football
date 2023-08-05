@@ -1,6 +1,7 @@
 const Team = require('../models/team');
 const Fixure = require('../models/fixures');
 const { updateHomeTeam, updateAwayTeam } = require('../utils/teamInfo');
+const { logging } = require('../config/logs');
 
 // GET- create a fixure
 exports.createFixureGet = async (req, res) => {
@@ -13,7 +14,7 @@ exports.createFixureGet = async (req, res) => {
             message2:req.flash('message2')
         });
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -47,7 +48,7 @@ exports.createFixurePost = async (req, res) => {
             });
         }
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -63,7 +64,7 @@ exports.updateFixureGet = async (req, res) => {
             message1:req.flash('message1')
         });
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -95,6 +96,6 @@ exports.updateFixurePost = async (req, res) => {
             });
         });
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }

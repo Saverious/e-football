@@ -1,6 +1,7 @@
 const League = require('../models/league');
 const Team = require('../models/team');
 const { makeTeamInfo } = require('../utils/teamInfo');
+const { logging } = require('../config/logs');
 
 // GET request : League Registration
 exports.registerGet = (req, res) => {
@@ -11,7 +12,7 @@ exports.registerGet = (req, res) => {
             message2:req.flash('message2')
         });
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -34,7 +35,7 @@ exports.registerPost = async (req, res) => {
             res.redirect('/register-league');
         }
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -49,7 +50,7 @@ exports.addTeamGet = async (req, res) => {
             message2:req.flash('message2')
         });
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
 
@@ -75,6 +76,6 @@ exports.addTeamPost = async (req, res) => {
             res.redirect('/add-team');
         }
     }catch(err){
-        console.error(err);
+        logging.error(err);
     }
 }
